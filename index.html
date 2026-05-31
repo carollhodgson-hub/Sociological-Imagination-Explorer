@@ -363,7 +363,7 @@
         <div class="progress-wrap" aria-label="Progress through explorer">
           <div class="progress-bar" id="progressBar"></div>
         </div>
-        <div class="progress-label" id="progressLabel">Progress: 0 of 9 sections explored</div>
+        <div class="progress-label" id="progressLabel">Progress: 0 of 10 sections explored</div>
       </div>
     </header>
 
@@ -372,11 +372,12 @@
       <button onclick="jumpTo('section2')">2. Trouble vs Issue</button>
       <button onclick="jumpTo('section3')">3. Social Structure</button>
       <button onclick="jumpTo('section4')">4. Reality Lens</button>
-      <button onclick="jumpTo('section5')">5. Theory Detective</button>
-      <button onclick="jumpTo('section6')">6. Scenario Lab</button>
-      <button onclick="jumpTo('section7')">7. Solidarity Builder</button>
-      <button onclick="jumpTo('section8')">8. Change Map</button>
-      <button onclick="jumpTo('section9')">9. Reflection</button>
+      <button onclick="jumpTo('section5')">5. Stereotype Anatomy</button>
+      <button onclick="jumpTo('section6')">6. Theory Detective</button>
+      <button onclick="jumpTo('section7')">7. Scenario Lab</button>
+      <button onclick="jumpTo('section8')">8. Solidarity Builder</button>
+      <button onclick="jumpTo('section9')">9. Change Map</button>
+      <button onclick="jumpTo('section10')">10. Reflection</button>
     </nav>
 
     <section class="section" id="section1">
@@ -520,6 +521,30 @@
         </div>
       </div>
 
+      <div class="card" style="margin-top:25px;">
+        <h3>🌎 Applying This to Society</h3>
+        <p>Select a social issue to see how two people might interpret the same issue differently.</p>
+
+        <label for="issueSelect"><strong>Select a Social Issue:</strong></label>
+        <select id="issueSelect" onchange="showIssuePerspective()">
+          <option value="">Choose an issue...</option>
+          <option value="homelessness">Homelessness</option>
+          <option value="poverty">Poverty</option>
+          <option value="crime">Crime</option>
+          <option value="education">Education</option>
+          <option value="immigration">Immigration</option>
+          <option value="socialmedia">Social Media</option>
+        </select>
+
+        <div class="feedback visible-feedback" id="issueFeedback">
+          Choose an issue from the menu above. The example will appear here.
+        </div>
+
+        <div class="callout">
+          <strong>Key Concept:</strong> Social Construction of Reality means that people create shared meanings
+          about the world through social interaction.
+        </div>
+
         <h4>📝 Reflection Question</h4>
         <p>
           Think about one issue above. How might two people view that issue differently based on their
@@ -589,9 +614,106 @@
       </div>
     </section>
 
+
     <section class="section" id="section5">
+      <span class="badge">Bias pathway</span>
+      <h2>5. Anatomy of a Stereotype</h2>
+      <p class="section-intro">
+        A stereotype may begin as an oversimplified belief about a group, but sociology helps us see how that belief can move outward into attitudes, actions, institutional patterns, and unequal outcomes.
+      </p>
+
+      <div class="callout">
+        <strong>Big sociology idea:</strong> Bias is not only an individual feeling. When repeated and built into rules, routines, policies, or everyday practices, bias can become part of the structure of society.
+      </div>
+
+      <div class="card" style="margin-top:20px;">
+        <h3>🔍 Click through the pathway</h3>
+        <p>
+          Select each step to see how a stereotype can move from an individual belief to a larger social consequence.
+        </p>
+
+        <div class="choice-row">
+          <button class="tool-button" onclick="showBiasStep('stereotype')">1. Stereotype</button>
+          <button class="tool-button" onclick="showBiasStep('prejudice')">2. Prejudice</button>
+          <button class="tool-button" onclick="showBiasStep('individual')">3. Individual Discrimination</button>
+          <button class="tool-button" onclick="showBiasStep('institutional')">4. Institutional Discrimination</button>
+          <button class="tool-button" onclick="showBiasStep('inequality')">5. Social Inequality</button>
+        </div>
+
+        <div class="scenario-box" id="biasBox">
+          <h3>Choose a step above.</h3>
+          <p>The explanation will appear here.</p>
+        </div>
+      </div>
+
+      <div class="grid" style="margin-top:20px;">
+        <div class="card trouble">
+          <span class="icon">🧠</span>
+          <h3>Stereotype</h3>
+          <p>An oversimplified belief about a group.</p>
+        </div>
+        <div class="card issue">
+          <span class="icon">💭</span>
+          <h3>Prejudice</h3>
+          <p>An attitude or feeling toward a group, often based on stereotypes.</p>
+        </div>
+        <div class="card change">
+          <span class="icon">🚫</span>
+          <h3>Discrimination</h3>
+          <p>An action or behavior that treats people unfairly.</p>
+        </div>
+        <div class="card structure">
+          <span class="icon">🏛️</span>
+          <h3>Institutional Pattern</h3>
+          <p>Unequal treatment becomes repeated through organizations, rules, or routines.</p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:25px;">
+        <h3>🏛️ Where can bias become institutional?</h3>
+        <p>
+          Choose an institution to see how individual assumptions can become larger patterns.
+        </p>
+
+        <label for="institutionSelect"><strong>Select an institution:</strong></label>
+        <select id="institutionSelect" onchange="showInstitutionBias()" style="width:100%; padding:12px; margin-top:10px; border-radius:14px; border:1px solid rgba(32,58,95,.2); font-size:1rem;">
+          <option value="">Choose an institution...</option>
+          <option value="education">Education</option>
+          <option value="employment">Employment</option>
+          <option value="housing">Housing</option>
+          <option value="healthcare">Healthcare</option>
+          <option value="criminaljustice">Criminal Justice</option>
+        </select>
+
+        <div class="feedback visible-feedback" id="institutionFeedback" style="margin-top:15px;">
+          Select an institution above. A sociology example will appear here.
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:25px;">
+        <h3>📖 Instructor Note</h3>
+        <img src="https://i.imgur.com/NApgRz8.png"
+             alt="Instructor note about stereotypes, prejudice, and discrimination"
+             class="responsive-image">
+        <p>
+          Stereotypes can feel small when they are treated as private opinions, but sociology asks us to trace their consequences. When assumptions shape repeated decisions, they can affect access to housing, work, education, healthcare, safety, and belonging.
+        </p>
+      </div>
+
+      <div class="mini-quiz-question">
+        <h3>Try it: What weakens social solidarity?</h3>
+        <p>Which answer best explains why stereotypes matter sociologically?</p>
+        <div class="choice-row">
+          <button class="choice" onclick="showFeedback('section5','biasQuizA')">They only matter if someone says them out loud.</button>
+          <button class="choice" onclick="showFeedback('section5','biasQuizB')">They can shape attitudes, actions, institutional patterns, and unequal outcomes.</button>
+        </div>
+        <div class="feedback" id="biasQuizA">Not quite. Even when stereotypes are not spoken directly, they can influence expectations, decisions, and treatment.</div>
+        <div class="feedback" id="biasQuizB">Yes. Sociology studies how individual meanings can become shared patterns with real social consequences.</div>
+      </div>
+    </section>
+    <section class="section" id="section6">
       <span class="badge">Theory practice</span>
-      <h2>5. Theory Detective: Why Sociologists Disagree</h2>
+      <h2>6. Theory Detective: Why Sociologists Disagree</h2>
       <p class="section-intro">
         Sociologists often study the same issue but ask different questions. The big three theoretical perspectives help us see different parts of the same social reality.
       </p>
@@ -621,9 +743,9 @@
       </div>
     </section>
 
-    <section class="section" id="section6">
+    <section class="section" id="section7">
       <span class="badge">Interactive practice</span>
-      <h2>6. Scenario Lab</h2>
+      <h2>7. Scenario Lab</h2>
       <p class="section-intro">
         Select a scenario. Then identify the possible personal troubles, public issues, and social structures involved.
       </p>
@@ -641,9 +763,9 @@
       </div>
     </section>
 
-    <section class="section" id="section7">
+    <section class="section" id="section8">
       <span class="badge">Durkheim connection</span>
-      <h2>7. Social Solidarity Builder</h2>
+      <h2>8. Social Solidarity Builder</h2>
       <p class="section-intro">
         Durkheim argued that societies need social solidarity: a sense of connection, shared responsibility, and belonging.
         When solidarity is weakened, people may experience isolation, distrust, anomie, and social fragmentation.
@@ -651,8 +773,8 @@
 
       <div class="card">
         <h3>🤝 Build or Break Solidarity</h3>
-        <img src="https://i.imgur.com/ukAQtp2.png"
-             alt="Social solidarity image showing connection and community"
+        <img src="https://i.imgur.com/crzH2XN.png"
+             alt="Social solidarity instructor note image"
              class="responsive-image">
 
         <p>
@@ -694,15 +816,15 @@
 
       <div class="card" style="margin-top:25px;">
         <h3>📖 Instructor Note</h3>
-        <https://i.imgur.com/NxBjMYM.jpeg"
-             alt="Instructor note image connected to perception and social meaning"
+        <img src="https://i.imgur.com/crzH2XN.png"
+             alt="Instructor note image connected to social solidarity and sociological imagination"
              class="responsive-image">
       </div>
     </section>
 
-    <section class="section" id="section8">
+    <section class="section" id="section9">
       <span class="badge">From analysis to action</span>
-      <h2>8. Social Change Map</h2>
+      <h2>9. Social Change Map</h2>
       <p class="section-intro">
         Sociology does more than identify problems. It helps us imagine better arrangements. Social change begins when people connect patterns, question assumptions, and redesign institutions.
       </p>
@@ -746,9 +868,9 @@
       </div>
     </section>
 
-    <section class="section" id="section9">
+    <section class="section" id="section10">
       <span class="badge">Student reflection</span>
-      <h2>9. Reflection Builder</h2>
+      <h2>10. Reflection Builder</h2>
       <p class="section-intro">
         Use these prompts to draft a response for your course notes, discussion, or Ideal Society Project. Your writing stays on your screen only.
       </p>
@@ -788,7 +910,7 @@
 
   <script>
     const explored = new Set();
-    const totalSections = 9;
+    const totalSections = 10;
     let solidarityLevel = 50;
 
     function jumpTo(id) {
@@ -839,6 +961,55 @@
       markExplored('section4');
     }
 
+
+    function showBiasStep(step) {
+      const box = document.getElementById('biasBox');
+      const content = {
+        stereotype: `
+          <h3>🧠 Step 1: Stereotype</h3>
+          <p><strong>What it is:</strong> An oversimplified belief about a group of people.</p>
+          <p><strong>Example:</strong> Assuming people experiencing homelessness are all lazy ignores housing costs, wages, disability, trauma, healthcare, and other social structures.</p>
+        `,
+        prejudice: `
+          <h3>💭 Step 2: Prejudice</h3>
+          <p><strong>What it is:</strong> A feeling or attitude toward a group based on a stereotype.</p>
+          <p><strong>Example:</strong> If someone believes a stereotype, they may feel fear, distrust, disgust, or superiority toward people in that group.</p>
+        `,
+        individual: `
+          <h3>🚫 Step 3: Individual Discrimination</h3>
+          <p><strong>What it is:</strong> Unfair treatment by one person or a small group.</p>
+          <p><strong>Example:</strong> A person refuses to hire, rent to, help, sit near, or speak respectfully to someone because of a biased assumption.</p>
+        `,
+        institutional: `
+          <h3>🏛️ Step 4: Institutional Discrimination</h3>
+          <p><strong>What it is:</strong> Unequal treatment becomes repeated through policies, rules, routines, or organizational practices.</p>
+          <p><strong>Example:</strong> If many decision-makers use the same biased assumptions, whole groups may face repeated barriers in housing, work, school, healthcare, or law.</p>
+        `,
+        inequality: `
+          <h3>⚖️ Step 5: Social Inequality</h3>
+          <p><strong>What it is:</strong> Unequal access to resources, opportunities, safety, and respect.</p>
+          <p><strong>Sociology connection:</strong> The final outcome can look “normal” if people forget the earlier steps that helped create it.</p>
+        `
+      };
+      box.innerHTML = content[step] || '<h3>Choose a step above.</h3>';
+      markExplored('section5');
+    }
+
+    function showInstitutionBias() {
+      const value = document.getElementById('institutionSelect').value;
+      const feedback = document.getElementById('institutionFeedback');
+      const examples = {
+        education: '<strong>Education:</strong> If students are stereotyped as less capable, they may receive less encouragement, harsher discipline, lower expectations, or fewer advanced opportunities.',
+        employment: '<strong>Employment:</strong> If employers act on biased assumptions, hiring, promotion, scheduling, and pay decisions can create unequal workplace outcomes.',
+        housing: '<strong>Housing:</strong> If landlords, lenders, or neighborhoods act on stereotypes, groups may face unequal access to safe and affordable housing.',
+        healthcare: '<strong>Healthcare:</strong> If providers dismiss certain patients\' pain or concerns, people may receive delayed care, less trust, or poorer treatment.',
+        criminaljustice: '<strong>Criminal Justice:</strong> If stereotypes influence suspicion, reporting, policing, sentencing, or supervision, inequality can become built into the system.'
+      };
+      feedback.innerHTML = examples[value] || 'Select an institution above. A sociology example will appear here.';
+      feedback.style.display = 'block';
+      markExplored('section5');
+    }
+
     function showTheory(type) {
       const theoryBox = document.getElementById('theoryBox');
       const content = {
@@ -872,7 +1043,7 @@
       };
 
       theoryBox.innerHTML = content[type] || '<h3>Choose a theory above.</h3>';
-      markExplored('section5');
+      markExplored('section7');
     }
 
     const scenarios = {
@@ -923,7 +1094,7 @@
           <div class="card change"><h3>Possible Social Change</h3><p>${s.change}</p></div>
         </div>
       `;
-      markExplored('section6');
+      markExplored('section7');
     }
 
     function adjustSolidarity(amount, message) {
@@ -942,7 +1113,7 @@
 
       document.getElementById('solidarityMessage').innerHTML = status + '<br>' + message;
       document.getElementById('solidarityMessage').style.display = 'block';
-      markExplored('section7');
+      markExplored('section8');
     }
 
     const observer = new IntersectionObserver((entries) => {
