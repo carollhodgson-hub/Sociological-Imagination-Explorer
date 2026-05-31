@@ -912,13 +912,14 @@
     }, { threshold: 0.55 });
 
     document.querySelectorAll('.section').forEach(section => observer.observe(section));
-  </script>
-function showReality(id) {
+    function showReality(id) {
 
   document.querySelectorAll('#reality-lens .feedback')
     .forEach(box => box.style.display = 'none');
 
   document.getElementById(id).style.display = 'block';
 }
+  </script>
+
 </body>
 </html>
