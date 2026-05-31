@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SOC-210 Sociological Imagination Explorer</title>
+  <style>
+    :root {
+      --navy: #203a5f;
+      --blue: #456b91;
+      --teal: #6fb7a7;
+      --mint: #dff5ee;
+      --gold: #f5c84c;
+      --cream: #fff9ed;
+      --rose: #f6d6d9;
+      --lavender: #e7ddf7;
+      --ink: #263238;
+      --soft: #f7fbff;
+      --white: #ffffff;
+      --shadow: 0 10px 25px rgba(32, 58, 95, 0.16);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(111,183,167,.25), transparent 30%),
+        radial-gradient(circle at top right, rgba(245,200,76,.22), transparent 28%),
+        linear-gradient(180deg, #f7fbff 0%, #fff9ed 100%);
+      line-height: 1.55;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 18px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--navy), var(--blue));
+      color: white;
+      border-radius: 28px;
+      padding: 34px 24px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before, .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      background: rgba(255,255,255,.12);
+    }
+
+    .hero::before { width: 180px; height: 180px; right: -50px; top: -50px; }
+    .hero::after { width: 120px; height: 120px; left: -35px; bottom: -45px; }
+
+    .hero-content { position: relative; z-index: 2; }
+
+    .eyebrow {
+      display: inline-block;
+      background: rgba(245,200,76,.95);
+      color: #253047;
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: .9rem;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height: 1.05;
+      margin: 0 0 14px;
+    }
+
+    .hero p {
+      max-width: 780px;
+      font-size: 1.08rem;
+      margin: 0;
+    }
+
+    .progress-wrap {
+      margin: 18px 0 0;
+      background: rgba(255,255,255,.18);
+      border-radius: 999px;
+      overflow: hidden;
+      height: 14px;
+      border: 1px solid rgba(255,255,255,.28);
+    }
+
+    .progress-bar {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), var(--teal));
+      transition: width .35s ease;
+    }
+
+    .progress-label {
+      margin-top: 8px;
+      font-size: .92rem;
+      opacity: .95;
+    }
+
+    .nav-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 18px 0;
+      position: sticky;
+      top: 0;
+      background: rgba(247,251,255,.93);
+      backdrop-filter: blur(8px);
+      z-index: 20;
+      padding: 12px 0;
+    }
+
+    .nav-buttons button, .choice, .tool-button {
+      border: 0;
+      border-radius: 999px;
+      padding: 11px 15px;
+      background: white;
+      color: var(--navy);
+      font-weight: 700;
+      box-shadow: 0 4px 12px rgba(32,58,95,.12);
+      cursor: pointer;
+      transition: transform .15s ease, background .15s ease, color .15s ease;
+    }
+
+    .nav-buttons button:hover, .choice:hover, .tool-button:hover {
+      transform: translateY(-2px);
+      background: var(--navy);
+      color: white;
+    }
+
+    .section {
+      background: rgba(255,255,255,.86);
+      border: 1px solid rgba(32,58,95,.08);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: 0 8px 22px rgba(32,58,95,.08);
+      margin: 18px 0;
+    }
+
+    .section h2 {
+      color: var(--navy);
+      font-size: clamp(1.55rem, 3vw, 2.35rem);
+      margin: 0 0 10px;
+    }
+
+    .section-intro {
+      font-size: 1.05rem;
+      max-width: 850px;
+      margin-top: 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 18px;
+      padding: 18px;
+      border: 1px solid rgba(32,58,95,.08);
+      box-shadow: 0 6px 18px rgba(32,58,95,.08);
+      min-height: 150px;
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      color: var(--navy);
+      font-size: 1.15rem;
+    }
+
+    .icon {
+      font-size: 2rem;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+
+    .callout {
+      background: var(--mint);
+      border-left: 8px solid var(--teal);
+      padding: 16px;
+      border-radius: 16px;
+      margin: 16px 0;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      align-items: stretch;
+    }
+
+    .trouble { background: #fff3f3; }
+    .issue { background: #effaf6; }
+    .structure { background: #f2f0ff; }
+    .change { background: #fff8df; }
+
+    .scenario-box {
+      background: linear-gradient(135deg, #ffffff, #f7fbff);
+      border: 2px dashed rgba(32,58,95,.22);
+      border-radius: 20px;
+      padding: 18px;
+      margin-top: 12px;
+    }
+
+    .choice-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 14px 0;
+    }
+
+    .feedback {
+      display: none;
+      padding: 15px;
+      border-radius: 16px;
+      background: var(--cream);
+      border: 1px solid rgba(245,200,76,.5);
+      margin-top: 10px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 58px 1fr;
+      gap: 12px;
+      align-items: start;
+    }
+
+    .bubble {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: white;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      box-shadow: 0 6px 14px rgba(32,58,95,.2);
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 110px;
+      border-radius: 16px;
+      border: 1px solid rgba(32,58,95,.2);
+      padding: 14px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1rem;
+      resize: vertical;
+      background: white;
+    }
+
+    .mini-quiz-question {
+      background: white;
+      border-radius: 18px;
+      padding: 16px;
+      margin: 12px 0;
+      border: 1px solid rgba(32,58,95,.1);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: var(--lavender);
+      color: var(--navy);
+      font-weight: 700;
+      font-size: .88rem;
+    }
+
+    .footer-note {
+      text-align: center;
+      color: #4c5b6b;
+      font-size: .95rem;
+      padding: 24px 8px 12px;
+    }
+
+    .completed {
+      outline: 3px solid rgba(111,183,167,.45);
+    }
+
+    @media (max-width: 650px) {
+      .page { padding: 10px; }
+      .hero, .section { padding: 20px; border-radius: 20px; }
+      .nav-buttons { position: static; }
+      .timeline-item { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero" id="top">
+      <div class="hero-content">
+        <span class="eyebrow">SOC-210 Interactive Mini-Chapter</span>
+        <h1>Sociological Imagination Explorer</h1>
+        <p>
+          Learn how to connect personal experiences to larger social patterns, institutions, inequalities,
+          and possibilities for social change. This mini-chapter is designed to help you see sociology,
+          not just read about it.
+        </p>
+        <div class="progress-wrap" aria-label="Progress through explorer">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="progress-label" id="progressLabel">Progress: 0 of 6 sections explored</div>
+      </div>
+    </header>
+
+    <nav class="nav-buttons" aria-label="Mini-chapter navigation">
+      <button onclick="jumpTo('section1')">1. Big Idea</button>
+      <button onclick="jumpTo('section2')">2. Trouble vs Issue</button>
+      <button onclick="jumpTo('section3')">3. Social Structure</button>
+      <button onclick="jumpTo('section4')">4. Reality Lens</button>
+      <button onclick="jumpTo('section5')">5. Scenario Lab</button>
+      <button onclick="jumpTo('section6')">6. Change Map</button>
+      <button onclick="jumpTo('section7')">7. Reflection</button>
+    </nav>
+
+    <section class="section" id="section1">
+      <span class="badge">Start here</span>
+      <h2>1. The Big Idea</h2>
+      <p class="section-intro">
+        C. Wright Mills described the <strong>sociological imagination</strong> as the ability to understand the connection
+        between our private lives and the larger society around us. Sociology asks us to zoom out.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <span class="icon">👤</span>
+          <h3>Personal Life</h3>
+          <p>Your biography: your choices, experiences, family, identity, hopes, and challenges.</p>
+        </article>
+        <article class="card">
+          <span class="icon">🌎</span>
+          <h3>Social World</h3>
+          <p>History, institutions, culture, laws, economy, technology, and social expectations.</p>
+        </article>
+        <article class="card">
+          <span class="icon">🔍</span>
+          <h3>Sociological Lens</h3>
+          <p>The skill of asking: What larger social forces may be shaping this situation?</p>
+        </article>
+      </div>
+
+      <div class="callout">
+        <strong>Memory phrase:</strong> The sociological imagination helps us connect <strong>me</strong> to <strong>we</strong>.
+      </div>
+    </section>
+
+    <section class="section" id="section2">
+      <span class="badge">Key distinction</span>
+      <h2>2. Personal Troubles vs Public Issues</h2>
+      <p class="section-intro">
+        A personal trouble feels individual. A public issue reveals a larger pattern affecting many people.
+        The sociological imagination does not erase personal responsibility, but it helps us see the social context.
+      </p>
+
+      <div class="two-column">
+        <article class="card trouble">
+          <span class="icon">🧩</span>
+          <h3>Personal Trouble</h3>
+          <p>A problem experienced privately by one person or family.</p>
+          <p><strong>Example:</strong> One student struggles to pay rent.</p>
+        </article>
+        <article class="card issue">
+          <span class="icon">📊</span>
+          <h3>Public Issue</h3>
+          <p>A problem connected to social patterns, institutions, or unequal access to resources.</p>
+          <p><strong>Example:</strong> Many students face rising housing costs and stagnant wages.</p>
+        </article>
+      </div>
+
+      <div class="mini-quiz-question">
+        <h3>Try it: Which is more sociological?</h3>
+        <p>A student says, “I am failing because I am lazy.” Which response uses sociological imagination?</p>
+        <div class="choice-row">
+          <button class="choice" onclick="showFeedback('q1a')">Only study harder.</button>
+          <button class="choice" onclick="showFeedback('q1b')">Ask what personal and social factors are shaping the situation.</button>
+        </div>
+        <div class="feedback" id="q1a">This may be part of the story, but sociology asks us to look beyond one individual explanation.</div>
+        <div class="feedback" id="q1b">Yes. A sociological response considers work hours, family responsibilities, internet access, course design, stress, transportation, and support systems.</div>
+      </div>
+    </section>
+
+    <section class="section" id="section3">
+      <span class="badge">Zoom out</span>
+      <h2>3. Social Structure Shapes Choices</h2>
+      <p class="section-intro">
+        <strong>Social structure</strong> refers to patterned arrangements in society. These patterns shape what people are expected to do,
+        what resources they can access, and which choices feel possible.
+      </p>
+
+      <div class="grid">
+        <article class="card structure">
+          <span class="icon">🏫</span>
+          <h3>Education</h3>
+          <p>Schools organize opportunities, credentials, expectations, and access to learning support.</p>
+        </article>
+        <article class="card structure">
+          <span class="icon">💼</span>
+          <h3>Economy</h3>
+          <p>Jobs, wages, schedules, transportation, and housing costs influence daily choices.</p>
+        </article>
+        <article class="card structure">
+          <span class="icon">👪</span>
+          <h3>Family</h3>
+          <p>Family roles, caregiving, support, and responsibilities affect time and resources.</p>
+        </article>
+        <article class="card structure">
+          <span class="icon">⚖️</span>
+          <h3>Law & Policy</h3>
+          <p>Laws and institutional policies shape access, rights, consequences, and protections.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="section4">
+      <span class="badge">Deep dive</span>
+      <h2>4. Social Construction of Reality</h2>
+      <p class="section-intro">
+        The <strong>social construction of reality</strong> means people create shared meanings through culture,
+        language, symbols, social interaction, and institutions. The same situation can be interpreted differently
+        depending on someone’s role, background, values, power, and lived experience.
+      </p>
+<!-- Reality Lens Perception Gallery -->
+
+<div class="card" style="margin-top:25px;">
+
+  <h3>👓 Reality Lens Challenge</h3>
+
+  <p>
+    Look carefully at each image. What do you notice first?
+    Different people often see different things. Sociology asks an important question:
+    If people can interpret an image differently, what happens when they interpret social issues differently?
+  </p>
+
+  <div class="grid">
+
+```
+<div class="card">
+  <img src="https://i.imgur.com/Q6OMQVO.jpeg"
+       alt="Perception illusion example"
+       style="width:100%; border-radius:15px;">
+  <p><strong>Image 1:</strong> What did you notice first?</p>
+</div>
+
+<div class="card">
+  <img src="https://i.imgur.com/NxBjMYM.jpeg"
+       alt="Perception illusion example"
+       style="width:100%; border-radius:15px;">
+  <p><strong>Image 2:</strong> What did you notice first?</p>
+</div>
+
+<div class="card">
+  <img src="https://i.imgur.com/oodTxTi.jpeg"
+       alt="Perception illusion example"
+       style="width:100%; border-radius:15px;">
+  <p><strong>Image 3:</strong> What did you notice first?</p>
+</div>
+```
+<div class="card" style="margin-top:25px;">
+
+  <h3>🌎 Applying This to Society</h3>
+
+  <p>
+    Consider the following social issues. Why might different people interpret them differently?
+  </p>
+
+  <ul>
+    <li>Homelessness</li>
+    <li>Poverty</li>
+    <li>Crime</li>
+    <li>Education</li>
+    <li>Immigration</li>
+    <li>Social Media</li>
+  </ul>
+
+  <p>
+    Sociologists recognize that people's views are shaped by culture,
+    family, education, media, religion, peer groups, and personal experiences.
+  </p>
+
+  <div class="callout">
+    <strong>Key Concept:</strong>
+    Social Construction of Reality means that people create shared meanings
+    about the world through social interaction.
+  </div>
+
+  <h4>📝 Reflection Question</h4>
+
+  <p>
+    Think about one of the social issues listed above.
+    How might two people view that issue differently based on their
+    experiences, culture, family background, or social position?
+  </p>
+
+  <textarea
+    placeholder="Type your thoughts here. This reflection stays on your screen and is not submitted."
+    style="width:100%; min-height:120px; margin-top:10px;">
+  </textarea>
+
+</div>
+<label for="issueSelect"><strong>Select a Social Issue:</strong></label>
+
+<select id="issueSelect" style="width:100%; padding:10px; margin-top:10px;">
+  <option>Choose an issue...</option>
+  <option>Homelessness</option>
+  <option>Poverty</option>
+  <option>Crime</option>
+  <option>Education</option>
+  <option>Immigration</option>
+  <option>Social Media</option>
+</select>
+  </div>
+
+  <div class="callout" style="margin-top:20px;">
+    <strong>Sociology Connection:</strong><br>
+    People often assume everyone sees reality the same way they do. These images remind us that perception is influenced by our experiences, expectations, culture, socialization, and background.
+    Sociologists study how societies create shared meanings and why people sometimes disagree about what is happening around them.
+  </div>
+
+</div>
+
+      <div class="callout">
+        <strong>Core idea:</strong> Reality is not only what happened. It is also how people are taught to interpret what happened.
+      </div>
+
+      <div class="scenario-box">
+        <h3>Image idea for this section</h3>
+        <p>
+          Add an image of several people looking at the same scene from different windows, mirrors, or colored lenses.
+          Suggested alt text: “Several people view the same event through different symbolic lenses, showing that meaning is shaped by culture and social position.”
+        </p>
+      </div>
+
+      <div class="scenario-box">
+        <h3>Scenario: A student is quiet during group work</h3>
+        <p><strong>What happened?</strong> A student sits quietly while classmates discuss a group project.</p>
+        <div class="grid">
+          <article class="card">
+            <span class="icon">🎓</span>
+            <h3>Instructor Lens</h3>
+            <p>The instructor may wonder if the student is confused, disengaged, anxious, or unsure how to enter the conversation.</p>
+          </article>
+          <article class="card">
+            <span class="icon">🧑‍🤝‍🧑</span>
+            <h3>Peer Lens</h3>
+            <p>Classmates may incorrectly assume the student is not contributing, even if the student is listening carefully.</p>
+          </article>
+          <article class="card">
+            <span class="icon">💭</span>
+            <h3>Student Lens</h3>
+            <p>The student may feel respectful, nervous, excluded, tired, or worried their idea will be judged.</p>
+          </article>
+          <article class="card">
+            <span class="icon">🌎</span>
+            <h3>Cultural Lens</h3>
+            <p>In some settings, listening first may be seen as respectful. In others, speaking quickly may be seen as participation.</p>
+          </article>
+          <article class="card">
+            <span class="icon">⚖️</span>
+            <h3>Power Lens</h3>
+            <p>Students with more confidence, status, language comfort, or past academic success may be more likely to speak first.</p>
+          </article>
+          <article class="card">
+            <span class="icon">🔍</span>
+            <h3>Sociological Lens</h3>
+            <p>Instead of asking, “What is wrong with this student?” sociology asks, “What meanings, norms, and structures shape this interaction?”</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="mini-quiz-question">
+        <h3>Try it: Which interpretation is most sociological?</h3>
+        <p>A student is quiet in a group. Which response best uses the social construction of reality?</p>
+        <div class="choice-row">
+          <button class="choice" onclick="showFeedback('q2a')">They obviously do not care.</button>
+          <button class="choice" onclick="showFeedback('q2b')">Different people may assign different meanings to the same behavior.</button>
+        </div>
+        <div class="feedback" id="q2a">That is a quick personal judgment. Sociology slows us down and asks how meaning is created.</div>
+        <div class="feedback" id="q2b">Yes. The same behavior can be interpreted through culture, norms, roles, status, and prior experiences.</div>
+      </div>
+    </section>
+
+    <section class="section" id="section5">
+      <span class="badge">Interactive practice</span>
+      <h2>5. Scenario Lab</h2>
+      <p class="section-intro">
+        Select a scenario. Then identify the possible personal troubles, public issues, and social structures involved.
+      </p>
+
+      <div class="choice-row">
+        <button class="tool-button" onclick="loadScenario('college')">College Stress</button>
+        <button class="tool-button" onclick="loadScenario('housing')">Housing Insecurity</button>
+        <button class="tool-button" onclick="loadScenario('health')">Health Access</button>
+        <button class="tool-button" onclick="loadScenario('work')">Work & Family</button>
+      </div>
+
+      <div class="scenario-box" id="scenarioBox">
+        <h3>Choose a scenario above.</h3>
+        <p>The lab will guide you through the sociological imagination step-by-step.</p>
+      </div>
+    </section>
+
+    <section class="section" id="section6">
+      <span class="badge">From analysis to action</span>
+      <h2>6. Social Change Map</h2>
+      <p class="section-intro">
+        Sociology does more than identify problems. It helps us imagine better arrangements. Social change begins when people connect patterns, question assumptions, and redesign institutions.
+      </p>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="bubble">1</div>
+          <div class="card change">
+            <h3>Notice the pattern</h3>
+            <p>What is happening to more than one person?</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="bubble">2</div>
+          <div class="card change">
+            <h3>Name the structures</h3>
+            <p>Which institutions, norms, policies, or inequalities help create the pattern?</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="bubble">3</div>
+          <div class="card change">
+            <h3>Imagine alternatives</h3>
+            <p>How could society organize resources, roles, or expectations differently?</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="bubble">4</div>
+          <div class="card change">
+            <h3>Connect to action</h3>
+            <p>What could individuals, groups, institutions, or communities do next?</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="section7">
+      <span class="badge">Student reflection</span>
+      <h2>7. Reflection Builder</h2>
+      <p class="section-intro">
+        Use these prompts to draft a response for your course notes or discussion. Your writing stays on your screen only.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <h3>Prompt 1</h3>
+          <p>Describe one personal trouble that can also be understood as a public issue.</p>
+          <textarea aria-label="Prompt 1 response"></textarea>
+        </article>
+        <article class="card">
+          <h3>Prompt 2</h3>
+          <p>Identify two social structures that shape this issue.</p>
+          <textarea aria-label="Prompt 2 response"></textarea>
+        </article>
+        <article class="card">
+          <h3>Prompt 3</h3>
+          <p>Explain one realistic social change that could improve the situation.</p>
+          <textarea aria-label="Prompt 3 response"></textarea>
+        </article>
+      </div>
+
+      <div class="callout">
+        <strong>Project connection:</strong> This is the same thinking you will use in the Ideal Society Project introductory slide.
+      </div>
+    </section>
+<section class="section" id="reality-lens">
+
+  <span class="badge">Interactive Sociology Lab</span>
+  <h2>👓 Reality Lens Challenge</h2>
+
+  <p class="section-intro">
+    Sociologists recognize that people do not simply react to reality—they react to
+    the meanings they assign to reality. These meanings are learned through culture,
+    socialization, family, media, education, religion, and personal experiences.
+  </p>
+
+  <div class="callout">
+    <strong>Social Construction of Reality:</strong>
+    People often observe the same situation but interpret it differently based on
+    their experiences, values, beliefs, social position, and culture.
+  </div>
+
+  <div class="card" style="text-align:center; margin-top:20px;">
+
+    <img src="https://i.imgur.com/crzH2XN.png"
+         alt="Optical illusion demonstrating multiple interpretations of the same image"
+         style="max-width:100%; border-radius:18px; box-shadow:0 6px 18px rgba(0,0,0,.15);">
+
+    <h3 style="margin-top:20px;">What do you notice first?</h3>
+
+    <p>
+      There is no wrong answer.
+      Select the option that best matches what you saw first.
+    </p>
+
+    <div class="choice-row">
+
+      <button class="choice"
+              onclick="showReality('answer1')">
+              I noticed one image
+      </button>
+
+      <button class="choice"
+              onclick="showReality('answer2')">
+              I noticed another image
+      </button>
+
+      <button class="choice"
+              onclick="showReality('answer3')">
+              I could see both
+      </button>
+
+    </div>
+
+    <div class="feedback" id="answer1">
+      Great observation! Many people initially focus on one interpretation.
+      Once another interpretation is revealed, it can become difficult to
+      "unsee" it.
+    </div>
+
+    <div class="feedback" id="answer2">
+      Great observation! Your brain focused on a different interpretation first.
+      People often perceive information differently based on prior experiences
+      and expectations.
+    </div>
+
+    <div class="feedback" id="answer3">
+      Excellent! Some people quickly identify multiple interpretations.
+      This demonstrates how reality can contain more than one valid perspective.
+    </div>
+
+  </div>
+
+  <div class="grid" style="margin-top:25px;">
+
+    <div class="card">
+      <span class="icon">🏠</span>
+      <h3>Homelessness</h3>
+      <p>
+        One person may see personal choices.
+        Another may see housing shortages, wages,
+        healthcare access, or inequality.
+      </p>
+    </div>
+
+    <div class="card">
+      <span class="icon">⚖️</span>
+      <h3>Crime</h3>
+      <p>
+        Some people focus on individual responsibility.
+        Others focus on neighborhoods, opportunity,
+        education, or social conditions.
+      </p>
+    </div>
+
+    <div class="card">
+      <span class="icon">🌎</span>
+      <h3>Culture</h3>
+      <p>
+        Behaviors considered normal in one culture
+        may be viewed very differently in another.
+      </p>
+    </div>
+
+    <div class="card">
+      <span class="icon">💬</span>
+      <h3>Social Interaction</h3>
+      <p>
+        Meanings develop through communication.
+        Society teaches us what things mean.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="callout" style="margin-top:25px;">
+    <strong>Sociology Insight:</strong>
+    The goal of sociology is not to decide which perspective is "correct."
+    The goal is to understand how perspectives are formed and how they shape
+    human behavior.
+  </div>
+
+  <div class="card" style="margin-top:25px;">
+
+    <h3>📖 Instructor Note</h3>
+
+    <img src="https://i.imgur.com/NApgRz8.png"
+         alt="Instructor note about stereotypes, prejudice, and discrimination"
+         style="max-width:100%; border-radius:18px; margin-top:10px;">
+
+    <p style="margin-top:15px;">
+      Stereotypes, prejudice, and discrimination often begin with assumptions
+      about reality. Sociology encourages us to question those assumptions,
+      examine evidence, and consider perspectives beyond our own experiences.
+    </p>
+
+  </div>
+
+</section>
+    <p class="footer-note">
+      SOC-210 Introduction to Sociology • Sociological Imagination Explorer • Designed for visual, interactive learning
+    </p>
+  </main>
+
+  <script>
+    const explored = new Set();
+    const totalSections = 7;
+
+    function jumpTo(id) {
+      document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
+      markExplored(id);
+    }
+
+    function markExplored(id) {
+      explored.add(id);
+      const el = document.getElementById(id);
+      if (el) el.classList.add('completed');
+      const percent = Math.round((explored.size / totalSections) * 100);
+      document.getElementById('progressBar').style.width = percent + '%';
+      document.getElementById('progressLabel').textContent = `Progress: ${explored.size} of ${totalSections} sections explored`;
+    }
+
+    function showFeedback(id) {
+      const boxes = document.querySelectorAll('.feedback');
+      boxes.forEach(box => box.style.display = 'none');
+      const selected = document.getElementById(id);
+      if (selected) selected.style.display = 'block';
+      markExplored('section2');
+    }
+
+    const scenarios = {
+      college: {
+        title: 'College Stress',
+        situation: 'A student is overwhelmed, working late shifts, caring for family, and falling behind in class.',
+        trouble: 'The student feels personally stressed and may blame themselves.',
+        issue: 'Many students balance work, caregiving, financial pressure, and school expectations.',
+        structures: 'Economy, family roles, education policies, transportation, technology access, and support services.',
+        change: 'Flexible deadlines, tutoring, childcare support, transportation help, course design improvements, and stronger advising systems.'
+      },
+      housing: {
+        title: 'Housing Insecurity',
+        situation: 'A person has a job but cannot afford stable housing near work or school.',
+        trouble: 'The person experiences stress, instability, and daily uncertainty.',
+        issue: 'Housing costs, wages, zoning, discrimination, and limited affordable options affect many people.',
+        structures: 'Economy, government policy, family resources, neighborhood development, and social class inequality.',
+        change: 'Affordable housing policy, living wages, tenant protections, transportation access, and community support systems.'
+      },
+      health: {
+        title: 'Health Access',
+        situation: 'A person delays medical care because they cannot afford the visit or take time off work.',
+        trouble: 'The person may feel they are making a risky individual choice.',
+        issue: 'Access to healthcare is shaped by insurance, job benefits, location, income, and institutional trust.',
+        structures: 'Healthcare, economy, law, workplace policy, race/class inequality, and geography.',
+        change: 'Expanded access, paid sick leave, community clinics, transportation support, and culturally responsive care.'
+      },
+      work: {
+        title: 'Work & Family',
+        situation: 'A parent struggles to keep a job because childcare is expensive and unpredictable.',
+        trouble: 'The parent feels pressure, guilt, and financial strain.',
+        issue: 'Caregiving is socially necessary, but many institutions are not organized around family needs.',
+        structures: 'Family, economy, gender roles, workplace policy, education/childcare systems, and law.',
+        change: 'Affordable childcare, flexible scheduling, paid leave, stronger family policy, and workplace culture change.'
+      }
+    };
+
+    function loadScenario(key) {
+      const s = scenarios[key];
+      const box = document.getElementById('scenarioBox');
+      box.innerHTML = `
+        <h3>${s.title}</h3>
+        <p><strong>Situation:</strong> ${s.situation}</p>
+        <div class="grid">
+          <div class="card trouble"><h3>Personal Trouble</h3><p>${s.trouble}</p></div>
+          <div class="card issue"><h3>Public Issue</h3><p>${s.issue}</p></div>
+          <div class="card structure"><h3>Social Structures</h3><p>${s.structures}</p></div>
+          <div class="card change"><h3>Possible Social Change</h3><p>${s.change}</p></div>
+        </div>
+      `;
+      markExplored('section5');
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.target.id) {
+          markExplored(entry.target.id);
+        }
+      });
+    }, { threshold: 0.55 });
+
+    document.querySelectorAll('.section').forEach(section => observer.observe(section));
+  </script>
+function showReality(id) {
+
+  document.querySelectorAll('#reality-lens .feedback')
+    .forEach(box => box.style.display = 'none');
+
+  document.getElementById(id).style.display = 'block';
+}
+</body>
+</html>
