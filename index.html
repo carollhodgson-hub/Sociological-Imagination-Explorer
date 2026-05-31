@@ -206,6 +206,8 @@
     .issue { background: #effaf6; }
     .structure { background: #f2f0ff; }
     .change { background: #fff8df; }
+    .power { background: #fff1e6; }
+    .solidarity { background: #eefaf7; }
 
     .scenario-box {
       background: linear-gradient(135deg, #ffffff, #f7fbff);
@@ -230,6 +232,8 @@
       border: 1px solid rgba(245,200,76,.5);
       margin-top: 10px;
     }
+
+    .visible-feedback { display: block; }
 
     .timeline {
       display: grid;
@@ -256,16 +260,19 @@
       box-shadow: 0 6px 14px rgba(32,58,95,.2);
     }
 
-    textarea {
+    textarea, select {
       width: 100%;
-      min-height: 110px;
       border-radius: 16px;
       border: 1px solid rgba(32,58,95,.2);
       padding: 14px;
       font-family: Arial, Helvetica, sans-serif;
       font-size: 1rem;
-      resize: vertical;
       background: white;
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
     }
 
     .mini-quiz-question {
@@ -284,6 +291,43 @@
       color: var(--navy);
       font-weight: 700;
       font-size: .88rem;
+    }
+
+    .responsive-image {
+      width: 100%;
+      max-width: 760px;
+      display: block;
+      margin: 12px auto;
+      border-radius: 18px;
+      box-shadow: 0 6px 18px rgba(0,0,0,.14);
+    }
+
+    .image-card img {
+      width: 100%;
+      border-radius: 15px;
+      display: block;
+    }
+
+    .meter-shell {
+      background: #e9eef6;
+      border-radius: 999px;
+      height: 28px;
+      overflow: hidden;
+      border: 1px solid rgba(32,58,95,.18);
+      margin: 12px 0;
+    }
+
+    .meter-fill {
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(90deg, #f6d6d9, var(--gold), var(--teal));
+      transition: width .3s ease;
+    }
+
+    .meter-label {
+      font-weight: 800;
+      color: var(--navy);
+      margin-top: 8px;
     }
 
     .footer-note {
@@ -319,7 +363,7 @@
         <div class="progress-wrap" aria-label="Progress through explorer">
           <div class="progress-bar" id="progressBar"></div>
         </div>
-        <div class="progress-label" id="progressLabel">Progress: 0 of 6 sections explored</div>
+        <div class="progress-label" id="progressLabel">Progress: 0 of 9 sections explored</div>
       </div>
     </header>
 
@@ -328,9 +372,11 @@
       <button onclick="jumpTo('section2')">2. Trouble vs Issue</button>
       <button onclick="jumpTo('section3')">3. Social Structure</button>
       <button onclick="jumpTo('section4')">4. Reality Lens</button>
-      <button onclick="jumpTo('section5')">5. Scenario Lab</button>
-      <button onclick="jumpTo('section6')">6. Change Map</button>
-      <button onclick="jumpTo('section7')">7. Reflection</button>
+      <button onclick="jumpTo('section5')">5. Theory Detective</button>
+      <button onclick="jumpTo('section6')">6. Scenario Lab</button>
+      <button onclick="jumpTo('section7')">7. Solidarity Builder</button>
+      <button onclick="jumpTo('section8')">8. Change Map</button>
+      <button onclick="jumpTo('section9')">9. Reflection</button>
     </nav>
 
     <section class="section" id="section1">
@@ -391,8 +437,8 @@
         <h3>Try it: Which is more sociological?</h3>
         <p>A student says, “I am failing because I am lazy.” Which response uses sociological imagination?</p>
         <div class="choice-row">
-          <button class="choice" onclick="showFeedback('q1a')">Only study harder.</button>
-          <button class="choice" onclick="showFeedback('q1b')">Ask what personal and social factors are shaping the situation.</button>
+          <button class="choice" onclick="showFeedback('section2','q1a')">Only study harder.</button>
+          <button class="choice" onclick="showFeedback('section2','q1b')">Ask what personal and social factors are shaping the situation.</button>
         </div>
         <div class="feedback" id="q1a">This may be part of the story, but sociology asks us to look beyond one individual explanation.</div>
         <div class="feedback" id="q1b">Yes. A sociological response considers work hours, family responsibilities, internet access, course design, stress, transportation, and support systems.</div>
@@ -439,115 +485,72 @@
         language, symbols, social interaction, and institutions. The same situation can be interpreted differently
         depending on someone’s role, background, values, power, and lived experience.
       </p>
-<!-- Reality Lens Perception Gallery -->
-
-<div class="card" style="margin-top:25px;">
-
-  <h3>👓 Reality Lens Challenge</h3>
-
-  <p>
-    Look carefully at each image. What do you notice first?
-    Different people often see different things. Sociology asks an important question:
-    If people can interpret an image differently, what happens when they interpret social issues differently?
-  </p>
-
-  <div class="grid">
-
-```
-<div class="card">
-  <img src="https://i.imgur.com/Q6OMQVO.jpeg"
-       alt="Perception illusion example"
-       style="width:100%; border-radius:15px;">
-  <p><strong>Image 1:</strong> What did you notice first?</p>
-</div>
-
-<div class="card">
-  <img src="https://i.imgur.com/NxBjMYM.jpeg"
-       alt="Perception illusion example"
-       style="width:100%; border-radius:15px;">
-  <p><strong>Image 2:</strong> What did you notice first?</p>
-</div>
-
-<div class="card">
-  <img src="https://i.imgur.com/oodTxTi.jpeg"
-       alt="Perception illusion example"
-       style="width:100%; border-radius:15px;">
-  <p><strong>Image 3:</strong> What did you notice first?</p>
-</div>
-```
-<div class="card" style="margin-top:25px;">
-
-  <h3>🌎 Applying This to Society</h3>
-
-  <p>
-    Consider the following social issues. Why might different people interpret them differently?
-  </p>
-
-  <ul>
-    <li>Homelessness</li>
-    <li>Poverty</li>
-    <li>Crime</li>
-    <li>Education</li>
-    <li>Immigration</li>
-    <li>Social Media</li>
-  </ul>
-
-  <p>
-    Sociologists recognize that people's views are shaped by culture,
-    family, education, media, religion, peer groups, and personal experiences.
-  </p>
-
-  <div class="callout">
-    <strong>Key Concept:</strong>
-    Social Construction of Reality means that people create shared meanings
-    about the world through social interaction.
-  </div>
-
-  <h4>📝 Reflection Question</h4>
-
-  <p>
-    Think about one of the social issues listed above.
-    How might two people view that issue differently based on their
-    experiences, culture, family background, or social position?
-  </p>
-
-  <textarea
-    placeholder="Type your thoughts here. This reflection stays on your screen and is not submitted."
-    style="width:100%; min-height:120px; margin-top:10px;">
-  </textarea>
-
-</div>
-<label for="issueSelect"><strong>Select a Social Issue:</strong></label>
-
-<select id="issueSelect" style="width:100%; padding:10px; margin-top:10px;">
-  <option>Choose an issue...</option>
-  <option>Homelessness</option>
-  <option>Poverty</option>
-  <option>Crime</option>
-  <option>Education</option>
-  <option>Immigration</option>
-  <option>Social Media</option>
-</select>
-  </div>
-
-  <div class="callout" style="margin-top:20px;">
-    <strong>Sociology Connection:</strong><br>
-    People often assume everyone sees reality the same way they do. These images remind us that perception is influenced by our experiences, expectations, culture, socialization, and background.
-    Sociologists study how societies create shared meanings and why people sometimes disagree about what is happening around them.
-  </div>
-
-</div>
 
       <div class="callout">
         <strong>Core idea:</strong> Reality is not only what happened. It is also how people are taught to interpret what happened.
       </div>
 
-      <div class="scenario-box">
-        <h3>Image idea for this section</h3>
+      <div class="card">
+        <h3>👓 Reality Lens Challenge</h3>
         <p>
-          Add an image of several people looking at the same scene from different windows, mirrors, or colored lenses.
-          Suggested alt text: “Several people view the same event through different symbolic lenses, showing that meaning is shaped by culture and social position.”
+          Look carefully at each image. What do you notice first? Different people often see different things.
+          Sociology asks: if people can interpret an image differently, what happens when they interpret social issues differently?
         </p>
+
+        <div class="grid">
+          <div class="card image-card">
+            <img src="https://i.imgur.com/Q6OMQVO.jpeg" alt="Perception illusion example 1">
+            <p><strong>Image 1:</strong> What did you notice first?</p>
+          </div>
+
+          <div class="card image-card">
+            <img src="https://i.imgur.com/NxBjMYM.jpeg" alt="Perception illusion example 2">
+            <p><strong>Image 2:</strong> What did you notice first?</p>
+          </div>
+
+          <div class="card image-card">
+            <img src="https://i.imgur.com/oodTxTi.jpeg" alt="Perception illusion example 3">
+            <p><strong>Image 3:</strong> What did you notice first?</p>
+          </div>
+        </div>
+
+        <div class="callout">
+          <strong>Sociology Connection:</strong> People often assume everyone sees reality the same way they do.
+          These images remind us that perception is influenced by experiences, expectations, culture, socialization, and background.
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:25px;">
+        <h3>🌎 Applying This to Society</h3>
+        <p>Select a social issue to see how two people might interpret the same issue differently.</p>
+
+        <label for="issueSelect"><strong>Select a Social Issue:</strong></label>
+        <select id="issueSelect" onchange="showIssuePerspective()">
+          <option value="">Choose an issue...</option>
+          <option value="homelessness">Homelessness</option>
+          <option value="poverty">Poverty</option>
+          <option value="crime">Crime</option>
+          <option value="education">Education</option>
+          <option value="immigration">Immigration</option>
+          <option value="socialmedia">Social Media</option>
+        </select>
+
+        <div class="feedback visible-feedback" id="issueFeedback">
+          Choose an issue from the menu above. The example will appear here.
+        </div>
+
+        <div class="callout">
+          <strong>Key Concept:</strong> Social Construction of Reality means that people create shared meanings
+          about the world through social interaction.
+        </div>
+
+        <h4>📝 Reflection Question</h4>
+        <p>
+          Think about one issue above. How might two people view that issue differently based on their
+          experiences, culture, family background, or social position?
+        </p>
+
+        <textarea placeholder="Type your thoughts here. This reflection stays on your screen and is not submitted."></textarea>
       </div>
 
       <div class="scenario-box">
@@ -591,17 +594,60 @@
         <h3>Try it: Which interpretation is most sociological?</h3>
         <p>A student is quiet in a group. Which response best uses the social construction of reality?</p>
         <div class="choice-row">
-          <button class="choice" onclick="showFeedback('q2a')">They obviously do not care.</button>
-          <button class="choice" onclick="showFeedback('q2b')">Different people may assign different meanings to the same behavior.</button>
+          <button class="choice" onclick="showFeedback('section4','q2a')">They obviously do not care.</button>
+          <button class="choice" onclick="showFeedback('section4','q2b')">Different people may assign different meanings to the same behavior.</button>
         </div>
         <div class="feedback" id="q2a">That is a quick personal judgment. Sociology slows us down and asks how meaning is created.</div>
         <div class="feedback" id="q2b">Yes. The same behavior can be interpreted through culture, norms, roles, status, and prior experiences.</div>
       </div>
+
+      <div class="card" style="margin-top:25px;">
+        <h3>📖 Instructor Note</h3>
+        <img src="https://i.imgur.com/NApgRz8.png"
+             alt="Instructor note about stereotypes, prejudice, and discrimination"
+             class="responsive-image">
+        <p>
+          Stereotypes, prejudice, and discrimination often begin with assumptions about reality.
+          Sociology encourages us to question those assumptions, examine evidence, and consider perspectives beyond our own experiences.
+        </p>
+      </div>
     </section>
 
     <section class="section" id="section5">
+      <span class="badge">Theory practice</span>
+      <h2>5. Theory Detective: Why Sociologists Disagree</h2>
+      <p class="section-intro">
+        Sociologists often study the same issue but ask different questions. The big three theoretical perspectives help us see different parts of the same social reality.
+      </p>
+
+      <div class="scenario-box">
+        <h3>Case File: Homelessness</h3>
+        <p>
+          A person is sleeping outside a public building. Some people walk by, some avoid eye contact, some offer help,
+          and some blame the individual. A sociologist asks: what larger patterns, meanings, and power relationships are connected to this moment?
+        </p>
+      </div>
+
+      <div class="choice-row">
+        <button class="tool-button" onclick="showTheory('functionalism')">🔧 Functionalism</button>
+        <button class="tool-button" onclick="showTheory('conflict')">⚔️ Conflict Theory</button>
+        <button class="tool-button" onclick="showTheory('symbolic')">💬 Symbolic Interactionism</button>
+      </div>
+
+      <div class="scenario-box" id="theoryBox">
+        <h3>Choose a theory above.</h3>
+        <p>Each button will show a different way sociologists might interpret homelessness.</p>
+      </div>
+
+      <div class="callout">
+        <strong>Theory Detective Reminder:</strong> One theory is not always “the answer.”
+        Theories are tools. Each tool helps us see something important.
+      </div>
+    </section>
+
+    <section class="section" id="section6">
       <span class="badge">Interactive practice</span>
-      <h2>5. Scenario Lab</h2>
+      <h2>6. Scenario Lab</h2>
       <p class="section-intro">
         Select a scenario. Then identify the possible personal troubles, public issues, and social structures involved.
       </p>
@@ -619,9 +665,68 @@
       </div>
     </section>
 
-    <section class="section" id="section6">
+    <section class="section" id="section7">
+      <span class="badge">Durkheim connection</span>
+      <h2>7. Social Solidarity Builder</h2>
+      <p class="section-intro">
+        Durkheim argued that societies need social solidarity: a sense of connection, shared responsibility, and belonging.
+        When solidarity is weakened, people may experience isolation, distrust, anomie, and social fragmentation.
+      </p>
+
+      <div class="card">
+        <h3>🤝 Build or Break Solidarity</h3>
+        <img src="https://i.imgur.com/ukAQtp2.png"
+             alt="Social solidarity image showing connection and community"
+             class="responsive-image">
+
+        <p>
+          Click the actions below. Some build solidarity by increasing connection and trust.
+          Others weaken solidarity by increasing fear, distrust, or division.
+        </p>
+
+        <div class="meter-label" id="solidarityLabel">Solidarity Level: 50</div>
+        <div class="meter-shell" aria-label="Social solidarity meter">
+          <div class="meter-fill" id="solidarityFill"></div>
+        </div>
+        <div class="feedback visible-feedback" id="solidarityMessage">
+          A society with moderate solidarity has some connection, but it can become stronger or weaker based on social arrangements and everyday choices.
+        </div>
+
+        <h3>Actions that can build solidarity</h3>
+        <div class="choice-row">
+          <button class="choice" onclick="adjustSolidarity(10,'Mentoring and community support help people feel connected and valued.')">Mentor youth</button>
+          <button class="choice" onclick="adjustSolidarity(10,'Community service creates shared responsibility and trust.')">Volunteer locally</button>
+          <button class="choice" onclick="adjustSolidarity(10,'Civic participation helps people feel they have a voice.')">Participate in civic life</button>
+          <button class="choice" onclick="adjustSolidarity(10,'Respectful dialogue can reduce social distance between groups.')">Respect differences</button>
+          <button class="choice" onclick="adjustSolidarity(10,'Strong public education can create shared knowledge and opportunity.')">Support education</button>
+        </div>
+
+        <h3>Actions or arrangements that can weaken solidarity</h3>
+        <div class="choice-row">
+          <button class="choice" onclick="adjustSolidarity(-10,'Stereotypes reduce empathy and make inequality seem normal.')">Spread stereotypes</button>
+          <button class="choice" onclick="adjustSolidarity(-10,'Dehumanizing language makes it easier to ignore suffering.')">Dehumanize groups</button>
+          <button class="choice" onclick="adjustSolidarity(-10,'Extreme inequality can create distance, resentment, and powerlessness.')">Normalize extreme inequality</button>
+          <button class="choice" onclick="adjustSolidarity(-10,'Misinformation can reduce trust and increase fear.')">Spread misinformation</button>
+          <button class="choice" onclick="adjustSolidarity(-10,'Us-versus-them thinking divides people who might otherwise cooperate.')">Encourage division</button>
+        </div>
+
+        <div class="callout">
+          <strong>Power Question:</strong> Sociologists ask who benefits when people are united, and who benefits when people are divided.
+          Low solidarity can make it harder for people to organize, speak out, or challenge unfair arrangements.
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:25px;">
+        <h3>📖 Instructor Note</h3>
+        <img src="https://i.imgur.com/crzH2XN.png"
+             alt="Instructor note image connected to perception and social meaning"
+             class="responsive-image">
+      </div>
+    </section>
+
+    <section class="section" id="section8">
       <span class="badge">From analysis to action</span>
-      <h2>6. Social Change Map</h2>
+      <h2>8. Social Change Map</h2>
       <p class="section-intro">
         Sociology does more than identify problems. It helps us imagine better arrangements. Social change begins when people connect patterns, question assumptions, and redesign institutions.
       </p>
@@ -656,13 +761,20 @@
           </div>
         </div>
       </div>
+
+      <div class="card" style="margin-top:25px;">
+        <h3>📖 Instructor Note</h3>
+        <img src="https://i.imgur.com/xbQ00b3.png"
+             alt="Instructor note image connected to social change"
+             class="responsive-image">
+      </div>
     </section>
 
-    <section class="section" id="section7">
+    <section class="section" id="section9">
       <span class="badge">Student reflection</span>
-      <h2>7. Reflection Builder</h2>
+      <h2>9. Reflection Builder</h2>
       <p class="section-intro">
-        Use these prompts to draft a response for your course notes or discussion. Your writing stays on your screen only.
+        Use these prompts to draft a response for your course notes, discussion, or Ideal Society Project. Your writing stays on your screen only.
       </p>
 
       <div class="grid">
@@ -678,149 +790,21 @@
         </article>
         <article class="card">
           <h3>Prompt 3</h3>
-          <p>Explain one realistic social change that could improve the situation.</p>
+          <p>Which theory helps explain this issue best: functionalism, conflict theory, or symbolic interactionism?</p>
           <textarea aria-label="Prompt 3 response"></textarea>
+        </article>
+        <article class="card">
+          <h3>Prompt 4</h3>
+          <p>How could society increase solidarity around solving this issue?</p>
+          <textarea aria-label="Prompt 4 response"></textarea>
         </article>
       </div>
 
       <div class="callout">
-        <strong>Project connection:</strong> This is the same thinking you will use in the Ideal Society Project introductory slide.
+        <strong>Project connection:</strong> This is the same thinking students will use in the Ideal Society Project introductory slide.
       </div>
     </section>
-<section class="section" id="reality-lens">
 
-  <span class="badge">Interactive Sociology Lab</span>
-  <h2>👓 Reality Lens Challenge</h2>
-
-  <p class="section-intro">
-    Sociologists recognize that people do not simply react to reality—they react to
-    the meanings they assign to reality. These meanings are learned through culture,
-    socialization, family, media, education, religion, and personal experiences.
-  </p>
-
-  <div class="callout">
-    <strong>Social Construction of Reality:</strong>
-    People often observe the same situation but interpret it differently based on
-    their experiences, values, beliefs, social position, and culture.
-  </div>
-
-  <div class="card" style="text-align:center; margin-top:20px;">
-
-    <img src="https://i.imgur.com/crzH2XN.png"
-         alt="Optical illusion demonstrating multiple interpretations of the same image"
-         style="max-width:100%; border-radius:18px; box-shadow:0 6px 18px rgba(0,0,0,.15);">
-
-    <h3 style="margin-top:20px;">What do you notice first?</h3>
-
-    <p>
-      There is no wrong answer.
-      Select the option that best matches what you saw first.
-    </p>
-
-    <div class="choice-row">
-
-      <button class="choice"
-              onclick="showReality('answer1')">
-              I noticed one image
-      </button>
-
-      <button class="choice"
-              onclick="showReality('answer2')">
-              I noticed another image
-      </button>
-
-      <button class="choice"
-              onclick="showReality('answer3')">
-              I could see both
-      </button>
-
-    </div>
-
-    <div class="feedback" id="answer1">
-      Great observation! Many people initially focus on one interpretation.
-      Once another interpretation is revealed, it can become difficult to
-      "unsee" it.
-    </div>
-
-    <div class="feedback" id="answer2">
-      Great observation! Your brain focused on a different interpretation first.
-      People often perceive information differently based on prior experiences
-      and expectations.
-    </div>
-
-    <div class="feedback" id="answer3">
-      Excellent! Some people quickly identify multiple interpretations.
-      This demonstrates how reality can contain more than one valid perspective.
-    </div>
-
-  </div>
-
-  <div class="grid" style="margin-top:25px;">
-
-    <div class="card">
-      <span class="icon">🏠</span>
-      <h3>Homelessness</h3>
-      <p>
-        One person may see personal choices.
-        Another may see housing shortages, wages,
-        healthcare access, or inequality.
-      </p>
-    </div>
-
-    <div class="card">
-      <span class="icon">⚖️</span>
-      <h3>Crime</h3>
-      <p>
-        Some people focus on individual responsibility.
-        Others focus on neighborhoods, opportunity,
-        education, or social conditions.
-      </p>
-    </div>
-
-    <div class="card">
-      <span class="icon">🌎</span>
-      <h3>Culture</h3>
-      <p>
-        Behaviors considered normal in one culture
-        may be viewed very differently in another.
-      </p>
-    </div>
-
-    <div class="card">
-      <span class="icon">💬</span>
-      <h3>Social Interaction</h3>
-      <p>
-        Meanings develop through communication.
-        Society teaches us what things mean.
-      </p>
-    </div>
-
-  </div>
-
-  <div class="callout" style="margin-top:25px;">
-    <strong>Sociology Insight:</strong>
-    The goal of sociology is not to decide which perspective is "correct."
-    The goal is to understand how perspectives are formed and how they shape
-    human behavior.
-  </div>
-
-  <div class="card" style="margin-top:25px;">
-
-    <h3>📖 Instructor Note</h3>
-
-    <img src="https://i.imgur.com/NApgRz8.png"
-         alt="Instructor note about stereotypes, prejudice, and discrimination"
-         style="max-width:100%; border-radius:18px; margin-top:10px;">
-
-    <p style="margin-top:15px;">
-      Stereotypes, prejudice, and discrimination often begin with assumptions
-      about reality. Sociology encourages us to question those assumptions,
-      examine evidence, and consider perspectives beyond our own experiences.
-    </p>
-
-  </div>
-
-</section>
     <p class="footer-note">
       SOC-210 Introduction to Sociology • Sociological Imagination Explorer • Designed for visual, interactive learning
     </p>
@@ -828,11 +812,15 @@
 
   <script>
     const explored = new Set();
-    const totalSections = 7;
+    const totalSections = 9;
+    let solidarityLevel = 50;
 
     function jumpTo(id) {
-      document.getElementById(id).scrollIntoView({ behavior: 'smooth', block: 'start' });
-      markExplored(id);
+      const target = document.getElementById(id);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        markExplored(id);
+      }
     }
 
     function markExplored(id) {
@@ -844,12 +832,71 @@
       document.getElementById('progressLabel').textContent = `Progress: ${explored.size} of ${totalSections} sections explored`;
     }
 
-    function showFeedback(id) {
-      const boxes = document.querySelectorAll('.feedback');
-      boxes.forEach(box => box.style.display = 'none');
-      const selected = document.getElementById(id);
+    function showFeedback(sectionId, feedbackId) {
+      const section = document.getElementById(sectionId);
+      if (!section) return;
+      section.querySelectorAll('.feedback').forEach(box => {
+        if (box.id !== 'issueFeedback' && box.id !== 'solidarityMessage') {
+          box.style.display = 'none';
+        }
+      });
+      const selected = document.getElementById(feedbackId);
       if (selected) selected.style.display = 'block';
-      markExplored('section2');
+      markExplored(sectionId);
+    }
+
+    function showIssuePerspective() {
+      const value = document.getElementById('issueSelect').value;
+      const feedback = document.getElementById('issueFeedback');
+
+      const examples = {
+        homelessness: '<strong>Homelessness:</strong> One person may see individual choices. Another may see housing costs, wages, mental health resources, disability, eviction, or lack of affordable healthcare.',
+        poverty: '<strong>Poverty:</strong> One person may see poor budgeting. Another may see wages, job access, education, childcare costs, discrimination, or generational inequality.',
+        crime: '<strong>Crime:</strong> One person may focus only on punishment. Another may ask about opportunity, neighborhood conditions, social control, trauma, policing, or inequality.',
+        education: '<strong>Education:</strong> One person may see grades as individual effort only. Another may consider school funding, internet access, family responsibilities, tracking, and support systems.',
+        immigration: '<strong>Immigration:</strong> One person may see threat or competition. Another may see labor demand, family reunification, conflict, policy, global inequality, or human rights.',
+        socialmedia: '<strong>Social Media:</strong> One person may see entertainment. Another may see identity performance, peer pressure, misinformation, algorithms, loneliness, or social connection.'
+      };
+
+      feedback.innerHTML = examples[value] || 'Choose an issue from the menu above. The example will appear here.';
+      feedback.style.display = 'block';
+      markExplored('section4');
+    }
+
+    function showTheory(type) {
+      const theoryBox = document.getElementById('theoryBox');
+      const content = {
+        functionalism: `
+          <h3>🔧 Functionalist Lens</h3>
+          <p><strong>Main question:</strong> Which parts of society are not functioning well together?</p>
+          <div class="grid">
+            <div class="card structure"><h3>Institutions</h3><p>Housing, healthcare, education, economy, family, and government all shape whether people have stability.</p></div>
+            <div class="card issue"><h3>Social Needs</h3><p>A society needs systems that provide shelter, safety, health, work, and belonging.</p></div>
+            <div class="card change"><h3>Possible Fix</h3><p>Improve institutional coordination: affordable housing, mental health services, job support, transportation, and education access.</p></div>
+          </div>
+        `,
+        conflict: `
+          <h3>⚔️ Conflict Theory Lens</h3>
+          <p><strong>Main question:</strong> Who has power and resources, and who is excluded from them?</p>
+          <div class="grid">
+            <div class="card power"><h3>Inequality</h3><p>Housing insecurity is connected to wages, rent, wealth gaps, property ownership, and policy choices.</p></div>
+            <div class="card power"><h3>Who Benefits?</h3><p>Sociologists ask who gains from current arrangements and who bears the costs.</p></div>
+            <div class="card change"><h3>Possible Fix</h3><p>Address power and inequality through living wages, tenant protections, affordable housing, and stronger safety nets.</p></div>
+          </div>
+        `,
+        symbolic: `
+          <h3>💬 Symbolic Interactionist Lens</h3>
+          <p><strong>Main question:</strong> How do labels and daily interactions shape people’s experiences?</p>
+          <div class="grid">
+            <div class="card"><h3>Labels</h3><p>Words such as “lazy,” “dangerous,” or “unhoused” influence how people are treated.</p></div>
+            <div class="card"><h3>Interactions</h3><p>Being ignored, stared at, avoided, or helped can shape dignity, identity, and opportunity.</p></div>
+            <div class="card change"><h3>Possible Fix</h3><p>Change language, reduce stigma, humanize people’s stories, and create respectful support interactions.</p></div>
+          </div>
+        `
+      };
+
+      theoryBox.innerHTML = content[type] || '<h3>Choose a theory above.</h3>';
+      markExplored('section5');
     }
 
     const scenarios = {
@@ -900,7 +947,26 @@
           <div class="card change"><h3>Possible Social Change</h3><p>${s.change}</p></div>
         </div>
       `;
-      markExplored('section5');
+      markExplored('section6');
+    }
+
+    function adjustSolidarity(amount, message) {
+      solidarityLevel = Math.max(0, Math.min(100, solidarityLevel + amount));
+      document.getElementById('solidarityFill').style.width = solidarityLevel + '%';
+      document.getElementById('solidarityLabel').textContent = 'Solidarity Level: ' + solidarityLevel;
+
+      let status = '';
+      if (solidarityLevel <= 25) {
+        status = '<strong>Low solidarity:</strong> Higher risk of isolation, distrust, anomie, polarization, and fragmentation.';
+      } else if (solidarityLevel >= 75) {
+        status = '<strong>High solidarity:</strong> Higher trust, cooperation, belonging, resilience, and collective problem-solving.';
+      } else {
+        status = '<strong>Moderate solidarity:</strong> Some connection exists, but it can grow stronger or weaker.';
+      }
+
+      document.getElementById('solidarityMessage').innerHTML = status + '<br>' + message;
+      document.getElementById('solidarityMessage').style.display = 'block';
+      markExplored('section7');
     }
 
     const observer = new IntersectionObserver((entries) => {
@@ -912,14 +978,6 @@
     }, { threshold: 0.55 });
 
     document.querySelectorAll('.section').forEach(section => observer.observe(section));
-    function showReality(id) {
-
-  document.querySelectorAll('#reality-lens .feedback')
-    .forEach(box => box.style.display = 'none');
-
-  document.getElementById(id).style.display = 'block';
-}
   </script>
-
 </body>
 </html>
